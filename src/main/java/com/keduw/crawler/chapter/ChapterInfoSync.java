@@ -39,6 +39,7 @@ public class ChapterInfoSync implements ApplicationRunner {
             for(int i = 1; i <= counts; i++){
                 chapterList = chapterService.getChapterList(i , SIZE);
                 for(Chapter chapter : chapterList){
+                    //将查询到的数据添加到消息队列中
                     amqpTemplate.convertAndSend(novelExchange, chapterRouting, JsonUtils.objectToJson(chapter));
                 }
                 TimeUnit.MINUTES.sleep(5);
