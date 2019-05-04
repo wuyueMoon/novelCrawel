@@ -1,12 +1,17 @@
 package com.keduw.crawler.chapter;
 
+import com.keduw.model.Chapter;
 import com.keduw.service.ChapterService;
+import com.keduw.utils.JsonUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 随系统启动
@@ -28,7 +33,7 @@ public class ChapterInfoSync implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        /*while (true){
+        while (true){
             int counts = chapterService.getInfoCounts();
             List<Chapter> chapterList = null;
             for(int i = 1; i <= counts; i++){
@@ -38,7 +43,7 @@ public class ChapterInfoSync implements ApplicationRunner {
                 }
                 TimeUnit.MINUTES.sleep(5);
             }
-        }*/
+        }
     }
 
     private static final int SIZE = 500;
